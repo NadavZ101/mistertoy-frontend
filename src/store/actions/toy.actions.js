@@ -14,6 +14,17 @@ export function loadToys() {
         })
 }
 
+export function removeToy(toyId) {
+    return toyService.remove(toyId)
+        .then(() => {
+            store.dispatch({ type: REMOVE_TOY, toyId })
+        })
+        .catch(err => {
+            console.log('toy actions -> Cannot remove toy', err)
+            throw err
+        })
+}
+
 
 store.subscribe(() => {
     console.log('----- Store State changed: ----')

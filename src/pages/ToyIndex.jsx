@@ -3,7 +3,7 @@ import { useSelector } from "react-redux"
 
 import { ToyList } from '../cmps/ToyList.jsx'
 
-import { loadToys } from "../store/actions/toy.actions"
+import { loadToys, removeToy } from "../store/actions/toy.actions"
 
 export function ToyIndex() {
 
@@ -17,7 +17,13 @@ export function ToyIndex() {
     }, [])
 
     function onRemoveToy(toyId) {
-
+        removeToy(toyId)
+            .then(() => {
+                console.log('Successfully removed toy')
+            })
+            .catch(err => {
+                console.log('Cannot removed toys')
+            })
     }
 
     function onEditToy(toy) {

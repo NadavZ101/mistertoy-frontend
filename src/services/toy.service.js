@@ -5,6 +5,7 @@ const TOYS_KEY = 'toyDB'
 
 export const toyService = {
     query,
+    remove,
 }
 
 
@@ -23,9 +24,12 @@ const toy = {
     inStock: true,
 }
 
-
 function query() {
     return storageService.query(TOYS_KEY)
+}
+
+function remove(toyId) {
+    return storageService.remove(TOYS_KEY, toyId)
 }
 
 
