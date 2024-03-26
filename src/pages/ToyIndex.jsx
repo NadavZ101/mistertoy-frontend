@@ -1,6 +1,9 @@
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useEffect } from "react"
+import { useSelector } from "react-redux"
 
+import { ToyList } from '../cmps/ToyList.jsx'
+
+import { loadToys } from "../store/actions/toy.actions"
 
 export function ToyIndex() {
 
@@ -11,7 +14,7 @@ export function ToyIndex() {
             .catch(err => {
                 console.log('Cannot load toys')
             })
-    })
+    }, [])
 
     function onRemoveToy(toyId) {
 
