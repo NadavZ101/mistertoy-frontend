@@ -5,7 +5,7 @@ import { ToyIndex } from './pages/ToyIndex.jsx'
 import { ToyEdit } from './pages/ToyEdit.jsx'
 
 import { store } from './store/store.js'
-import '../src/assets/App.css'
+import '../src/assets/style/main.css'
 
 export function App() {
 

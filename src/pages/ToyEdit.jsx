@@ -43,6 +43,12 @@ export function ToyEdit() {
         ev.preventDefault()
         if (!toyToEdit.price) toyToEdit.price = 250
         saveToy(toyToEdit)
+            .then(() => {
+                navigate('/toy')
+            })
+            .catch(err => {
+                console.log('Had issues in adding toy', err)
+            })
     }
 
     const labels = toyService.getLabels()
@@ -91,7 +97,7 @@ export function ToyEdit() {
                     onChange={handleChange}
                 >
                     {labels.map((label, idx) => {
-                        <option key={idx} value={label}>
+                        return <option key={idx} value={label}>
                             {label}
                         </option>
                     })}
