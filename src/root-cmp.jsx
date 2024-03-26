@@ -1,7 +1,9 @@
 import { Provider } from 'react-redux'
 import { Route, Router, Routes } from 'react-router-dom'
 
-import { ToyIndex } from './pages/ToyIndex'
+import { ToyIndex } from './pages/ToyIndex.jsx'
+
+import { store } from './store/store.js'
 import './App.css'
 
 export function App() {
