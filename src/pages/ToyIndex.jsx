@@ -4,6 +4,7 @@ import { useSelector } from "react-redux"
 import { ToyList } from '../cmps/ToyList.jsx'
 
 import { loadToys, removeToy } from "../store/actions/toy.actions"
+import { Link } from "react-router-dom"
 
 export function ToyIndex() {
 
@@ -26,18 +27,16 @@ export function ToyIndex() {
             })
     }
 
-    function onEditToy(toy) {
-
-    }
 
     if (!toys) return <div>Loading Toys...</div>
     return (
         <div>
             <h3>Meet Mister Toy</h3>
+            <button className="btn"><Link to="/toy/edit">Add Toy</Link>
+            </button>
             <ToyList
                 toys={toys}
                 onRemoveToy={onRemoveToy}
-                onEditToy={onEditToy}
             />
         </div>
     )

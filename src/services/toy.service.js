@@ -6,6 +6,10 @@ const TOYS_KEY = 'toyDB'
 export const toyService = {
     query,
     remove,
+    save,
+    getEmptyToy,
+    getToyById,
+    getLabels,
 }
 
 
@@ -30,6 +34,38 @@ function query() {
 
 function remove(toyId) {
     return storageService.remove(TOYS_KEY, toyId)
+}
+
+function save(toy) {
+    if (toy._id) {
+        toy.name = toy.name
+        toy.price = toy.price
+        toy.inStock = toy.inStock
+
+        return storageService.put(TOYS_KEY, toy)
+    }
+    else {
+        toy.name = toy.name
+        toy.price = toy.price
+        toy.inStock = toy.inStock
+        toy.labels = toy.labels
+        toy.createdAt = new Date().getTime()
+        toy.inStock = true
+
+        return storageService.post(TOYS_KEY, toy)
+    }
+}
+
+function getEmptyToy() {
+    return { name: '', price: '', labels: [], createdAt: '', inStock: '' }
+}
+
+function getToyById(toyId) {
+    return storageService.get(TOYS_KEY, toyId)
+}
+
+function getLabels() {
+    return labels
 }
 
 

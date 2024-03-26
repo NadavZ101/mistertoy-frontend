@@ -8,6 +8,7 @@ export function ToyPreview({ toy }) {
         <p>Price: <span>${toy.price}</span></p>
 
         <Link to={`/toy/edit/${toy._id}`}>Edit✍️</Link>
+        &nbsp; | &nbsp;
         <Link to={`/toy/${toy._id}`}>Details</Link>
     </article>
 }
