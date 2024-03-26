@@ -1,10 +1,10 @@
 import { Provider } from 'react-redux'
-import { Route, Router, Routes } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
 import { ToyIndex } from './pages/ToyIndex.jsx'
 
 import { store } from './store/store.js'
-import './App.css'
+import '../src/assets/App.css'
 
 export function App() {
 
@@ -16,14 +16,13 @@ export function App() {
           {/* <AppHeader /> */}
           <main className="main-layout">
             <Routes>
-              {/* <Route element={<HomePage />} path="/"></Route> */}
-              <Route element={<ToyIndex />} path="/toys"></Route>
+              {/* <Route element={<HomePage />} path="/" /> */}
+              <Route element={<ToyIndex />} path="/toy" />
             </Routes>
           </main>
 
         </section>
       </Router>
-
     </Provider>
   )
 }
