@@ -31,7 +31,13 @@ export function ToyIndex() {
     }
 
     function onSetFilter(filterBy) {
+        console.log("🚀 ~ onSetFilter ~ filterBy:", filterBy)
+
         setFilterBy(filterBy)
+    }
+
+    function onSetSort(sortBy) {
+
     }
 
 
@@ -41,7 +47,7 @@ export function ToyIndex() {
             <h3>Meet Mister Toy</h3>
             <button className="btn"><Link to="/toy/edit">Add Toy</Link>
             </button>
-            <ToyFilter filterBy={filterBy} onSetFilter={onSetFilter} />
+            <ToyFilter filterBy={filterBy} onSetFilter={onSetFilter} onSetSort={onSetSort} />
             <ToyList
                 toys={toys}
                 onRemoveToy={onRemoveToy}

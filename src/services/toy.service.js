@@ -30,6 +30,8 @@ const toy = {
 }
 
 function query(filterBy = {}) {
+    console.log("🚀 ~ query ~ filterBy:", filterBy)
+
     return storageService.query(TOYS_KEY)
         .then(toys => {
             if (filterBy.name) {
@@ -38,7 +40,6 @@ function query(filterBy = {}) {
             }
 
             if (filterBy.inStock !== undefined) {
-                console.log("🚀 ~ query ~ filterBy.inStock:", filterBy.inStock)
 
                 const inStock = filterBy.inStock === true
                 toys = toys.filter(toy => toy.inStock === inStock)
@@ -46,6 +47,23 @@ function query(filterBy = {}) {
 
             if (filterBy.label) {
                 toys = toys.filter(toy => toy.labels.includes(filterBy.label))
+            }
+
+            if (filterBy.sortBy) {
+                let dir
+                if (filterBy.isDesc) dir = 1
+                else dir = -1
+
+                if (filterBy.sortBy === 'name') {
+                    toys.sort((toy1, toy2) => dir * toy2.name.localCompare(toy1.name))
+                }
+                if (filterBy.sortBy === 'price') {
+                    toys.sort((toy1, toy2) => dir * (toy2.price - toy1.price))
+                }
+                if (filterBy.sortBy === 'createdAt') {
+                    toys.sort((toy1, toy2) => dir * (toy2.createdAt - toy1.createdAt))
+                }
+
             }
             return toys
         })

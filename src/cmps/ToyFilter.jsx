@@ -6,22 +6,45 @@ import { toyService } from "../services/toy.service"
 export function ToyFilter({ filterBy, onSetFilter }) {
 
     const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
+    const [sortBy, setSortBy] = useState('')
+    const [isDesc, setIsDesc] = useState(false)
+
     onSetFilter = useRef(utilService.debounce(onSetFilter, 500))
 
     const labels = toyService.getLabels()
 
     useEffect(() => {
-        onSetFilter.current(filterByToEdit)
-    }, [filterByToEdit])
+        const criteria = { ...filterByToEdit, sortBy, isDesc }
+        onSetFilter.current(criteria)
+    }, [filterByToEdit, sortBy, isDesc])
+
+    // useEffect(() => {
+    //     onSetFilter.current(filterByToEdit)
+    // }, [filterByToEdit, sortBy, isDesc])
 
     function handleChange({ target }) {
-        let field = target.name
-        let value = target.value === 'number' ? +target.value : target.value
-        if (target.type === 'checkbox') {
-            value = target.checked
+        const { name, value, type, checked } = target
+
+        if (type === 'checkbox') {
+            if (name === 'inStock') {
+                setFilterByToEdit(prevFilter => ({ ...prevFilter, [name]: checked }))
+            } else if (name === 'desc') {
+                setIsDesc(checked)
+            }
+        } else if (name === 'sort') {
+            setSortBy(value)
+        } else {
+            setFilterByToEdit(prevFilter => ({ ...prevFilter, [name]: value }))
         }
-        setFilterByToEdit(prevFilter => ({ ...prevFilter, [field]: value }))
     }
+    // function handleChange({ target }) {
+    //     let field = target.name
+    //     let value = target.value === 'number' ? +target.value : target.value
+    //     if (target.type === 'checkbox') {
+    //         value = target.checked
+    //     }
+    //     setFilterByToEdit(prevFilter => ({ ...prevFilter, [field]: value }))
+    // }
 
     return (
         <section className="toy-filter full main-layout">
@@ -55,6 +78,23 @@ export function ToyFilter({ filterBy, onSetFilter }) {
                         <option key={idx} value={label}>{label}</option>
                     ))}
                 </select>
+
+                <label htmlFor="sort">Sort by:</label>
+                <select name="sort" id="sort" value={sortBy} onChange={handleChange}>
+                    <option value="">Select</option>
+                    <option value="name">Name</option>
+                    <option value="price">Price</option>
+                    <option value="createdAt">Created</option>
+                </select>
+
+                <label htmlFor="desc">Descending:</label>
+                <input
+                    type="checkbox"
+                    name="desc"
+                    id="desc"
+                    checked={isDesc}
+                    onChange={handleChange}
+                />
             </form>
         </section>
     )
