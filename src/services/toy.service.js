@@ -10,6 +10,7 @@ export const toyService = {
     getEmptyToy,
     getToyById,
     getLabels,
+    getDefaultFilter,
 }
 
 
@@ -28,8 +29,26 @@ const toy = {
     inStock: true,
 }
 
-function query() {
+function query(filterBy = {}) {
     return storageService.query(TOYS_KEY)
+        .then(toys => {
+            if (filterBy.name) {
+                const regex = new RegExp(filterBy.name, 'i')
+                toys = toys.filter(toy => regex.test(toy.name))
+            }
+
+            if (filterBy.inStock !== undefined) {
+                console.log("🚀 ~ query ~ filterBy.inStock:", filterBy.inStock)
+
+                const inStock = filterBy.inStock === true
+                toys = toys.filter(toy => toy.inStock === inStock)
+            }
+
+            if (filterBy.label) {
+                toys = toys.filter(toy => toy.labels.includes(filterBy.label))
+            }
+            return toys
+        })
 }
 
 function remove(toyId) {
@@ -66,6 +85,10 @@ function getToyById(toyId) {
 
 function getLabels() {
     return labels
+}
+
+function getDefaultFilter() {
+    return { name: '', inStock: '', label: '' }
 }
 
 

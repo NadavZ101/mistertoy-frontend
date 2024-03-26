@@ -1,21 +1,24 @@
 import { useEffect } from "react"
 import { useSelector } from "react-redux"
 
-import { ToyList } from '../cmps/ToyList.jsx'
 
-import { loadToys, removeToy } from "../store/actions/toy.actions"
+import { ToyList } from '../cmps/ToyList.jsx'
+import { ToyFilter } from '../cmps/ToyFilter.jsx'
+
+import { loadToys, removeToy, setFilterBy } from "../store/actions/toy.actions"
 import { Link } from "react-router-dom"
 
 export function ToyIndex() {
 
     const toys = useSelector(storeState => storeState.toyModule.toys)
+    const filterBy = useSelector(storeState => storeState.toyModule.filterBy)
 
     useEffect(() => {
         loadToys()
             .catch(err => {
                 console.log('Cannot load toys')
             })
-    }, [])
+    }, [filterBy])
 
     function onRemoveToy(toyId) {
         removeToy(toyId)
@@ -27,6 +30,10 @@ export function ToyIndex() {
             })
     }
 
+    function onSetFilter(filterBy) {
+        setFilterBy(filterBy)
+    }
+
 
     if (!toys) return <div>Loading Toys...</div>
     return (
@@ -34,6 +41,7 @@ export function ToyIndex() {
             <h3>Meet Mister Toy</h3>
             <button className="btn"><Link to="/toy/edit">Add Toy</Link>
             </button>
+            <ToyFilter filterBy={filterBy} onSetFilter={onSetFilter} />
             <ToyList
                 toys={toys}
                 onRemoveToy={onRemoveToy}
