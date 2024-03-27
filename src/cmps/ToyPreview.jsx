@@ -4,6 +4,8 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
+
 
 import { Link } from "react-router-dom"
 
@@ -28,10 +30,15 @@ export function ToyPreview({ toy, onRemoveToy }) {
                 </CardContent>
             </CardActionArea>
             <CardActions>
-                <Button><Link to={`/toy/edit/${toy._id}`}>Edit</Link></Button>
+                <Button className="btn"><Link to={`/toy/edit/${toy._id}`}>Edit</Link></Button>
                 &nbsp; | &nbsp;
-                <Button><Link underline="hover" to={`/toy/${toy._id}`}>Details</Link></Button>
-                <Button className="btn" onClick={() => onRemoveToy(toy._id)}>X</Button>
+
+
+                <Button className="btn"><Link to={`/toy/${toy._id}`}>Details</Link></Button>
+                {/* <Button className="btn" onClick={() => onRemoveToy(toy._id)}></Button> */}
+
+                <DeleteIcon className="btn" onClick={() => onRemoveToy(toy._id)} />
+                {/* <Button className="btn" onClick={() => onRemoveToy(toy._id)}>X</Button> */}
             </CardActions>
         </Card>
     )

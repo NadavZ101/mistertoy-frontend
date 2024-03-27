@@ -44,3 +44,7 @@
 .grid {
     display: grid;
 }
+
+.btn:hover {
+    cursor: pointer;
+}

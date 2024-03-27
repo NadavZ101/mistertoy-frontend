@@ -2,6 +2,9 @@ import { useEffect, useRef, useState } from "react"
 import { utilService } from "../services/util.service"
 import { toyService } from "../services/toy.service"
 
+import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Switch from '@mui/material/Switch';
 
 export function ToyFilter({ filterBy, onSetFilter }) {
 
@@ -50,22 +53,44 @@ export function ToyFilter({ filterBy, onSetFilter }) {
         <section className="toy-filter full main-layout">
             <h4>Filter Our Toys</h4>
             <form>
-                <label htmlFor="name">Name:</label>
+
+                <TextField
+                    id="name"
+                    label="name"
+                    name="name"
+                    value={filterByToEdit.name}
+                    onChange={handleChange}
+
+                />
+                {/* <label htmlFor="name">Name:</label>
                 <input
                     type="text"
                     name="name"
                     id="name"
                     value={filterByToEdit.name}
                     onChange={handleChange}
+                /> */}
+
+                <FormControlLabel
+                    control={
+                        <Switch
+                            checked={filterByToEdit.inStock === 'true' || filterByToEdit.inStock === true}
+                            onChange={handleChange}
+                            name="inStock"
+                            id="inStock"
+                        />
+                    }
+                    label="inStock"
                 />
-                <label htmlFor="inStock">In stock:</label>
+
+                {/* <label htmlFor="inStock">In stock:</label>
                 <input
                     type="checkbox"
                     name="inStock"
                     id="inStock"
                     checked={filterByToEdit.inStock}
                     onChange={handleChange}
-                />
+                /> */}
                 <label htmlFor="label">Label:</label>
                 <select
                     name="label"
@@ -86,6 +111,7 @@ export function ToyFilter({ filterBy, onSetFilter }) {
                     <option value="price">Price</option>
                     <option value="createdAt">Created</option>
                 </select>
+
 
                 <label htmlFor="desc">Descending:</label>
                 <input
