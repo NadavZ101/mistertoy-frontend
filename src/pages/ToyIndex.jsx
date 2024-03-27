@@ -41,8 +41,8 @@ export function ToyIndex() {
 
     if (!toys) return <div>Loading Toys...</div>
     return (
-        <div>
-            <h3>Meet Mister Toy</h3>
+        <div className="toy-index">
+            <h1>Meet Mister Toy</h1>
             <button className="btn"><Link to="/toy/edit">Add Toy</Link>
             </button>
             <ToyFilter filterBy={filterBy} onSetFilter={onSetFilter} onSetSort={onSetSort} />
