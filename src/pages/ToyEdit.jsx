@@ -33,6 +33,7 @@ export function ToyEdit() {
             value = target.checked
         } else if (target.multiple) {
             value = Array.from(target.selectedOptions, option => option.value)
+            setToyToEdit(prevToyToEdit => ({ ...prevToyToEdit, labels: value }))
             setSelectedLabels(value)
             return
         }
@@ -41,6 +42,7 @@ export function ToyEdit() {
 
     function onSaveToy(ev) {
         ev.preventDefault()
+
         if (!toyToEdit.price) toyToEdit.price = 250
         saveToy(toyToEdit)
             .then(() => {
