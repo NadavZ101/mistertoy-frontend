@@ -1,20 +1,11 @@
 .cards {
     grid-template-columns: repeat(auto-fill, 225px);
-    gap: 1.2rem;
+    gap: 2rem;
     margin-top: 1rem;
 }
 
 .cards .card {
-    padding: 20px;
-    gap: 5px;
     background-color: #f8f9faa2;
     border-radius: 9px;
     box-shadow: 0 2px 6px 0px rgb(0 0 0 / 15%);
 }
-
-/* .cards .card-img {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 1rem;
-} */

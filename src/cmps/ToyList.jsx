@@ -6,10 +6,10 @@ export function ToyList({ toys, onRemoveToy, onEditToy }) {
         {
             toys.map(toy =>
                 <li className="toy-preview card flex center column" key={toy._id}>
-                    <ToyPreview toy={toy} />
+                    <ToyPreview toy={toy} onRemoveToy={onRemoveToy} />
 
                     <div>
-                        <button className="btn" onClick={() => onRemoveToy(toy._id)}>X</button>
+                        {/* <button className="btn" onClick={() => onRemoveToy(toy._id)}>X</button> */}
                     </div>
                 </li>)
         }
