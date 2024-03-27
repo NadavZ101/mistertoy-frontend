@@ -1,7 +1,10 @@
 import { storageService } from "./async-storage.service.js"
+import { httpService } from "./http.service.js"
 import { utilService } from "./util.service.js"
 
 const TOYS_KEY = 'toyDB'
+
+const BASE_URL = 'toy/'
 
 export const toyService = {
     query,
@@ -30,65 +33,22 @@ const toy = {
 }
 
 function query(filterBy = {}) {
+    console.log("🚀 ~ query ~ filterBy:", filterBy)
 
-    return storageService.query(TOYS_KEY)
-        .then(toys => {
-            if (filterBy.name) {
-                const regex = new RegExp(filterBy.name, 'i')
-                toys = toys.filter(toy => regex.test(toy.name))
-            }
+    return httpService.get(BASE_URL, filterBy)
 
-            if (filterBy.inStock !== undefined) {
-
-                const inStock = filterBy.inStock === true
-                toys = toys.filter(toy => toy.inStock === inStock)
-            }
-
-            if (filterBy.label) {
-                toys = toys.filter(toy => toy.labels.includes(filterBy.label))
-            }
-
-            if (filterBy.sortBy) {
-                let dir
-                if (filterBy.isDesc) dir = 1
-                else dir = -1
-
-                if (filterBy.sortBy === 'name') {
-                    toys.sort((toy1, toy2) => dir * toy2.name.localCompare(toy1.name))
-                }
-                if (filterBy.sortBy === 'price') {
-                    toys.sort((toy1, toy2) => dir * (toy2.price - toy1.price))
-                }
-                if (filterBy.sortBy === 'createdAt') {
-                    toys.sort((toy1, toy2) => dir * (toy2.createdAt - toy1.createdAt))
-                }
-
-            }
-            return toys
-        })
 }
 
 function remove(toyId) {
-    return storageService.remove(TOYS_KEY, toyId)
+    return httpService.delete(BASE_URL + toyId)
 }
 
 function save(toy) {
     if (toy._id) {
-        toy.name = toy.name
-        toy.price = toy.price
-        toy.inStock = toy.inStock
-
-        return storageService.put(TOYS_KEY, toy)
+        return httpService.put(BASE_URL, toy)
     }
     else {
-        toy.name = toy.name
-        toy.price = toy.price
-        toy.inStock = toy.inStock
-        toy.labels = toy.labels
-        toy.createdAt = new Date().getTime()
-        toy.inStock = true
-
-        return storageService.post(TOYS_KEY, toy)
+        return httpService.post(BASE_URL, toy)
     }
 }
 
@@ -97,7 +57,7 @@ function getEmptyToy() {
 }
 
 function getToyById(toyId) {
-    return storageService.get(TOYS_KEY, toyId)
+    return httpService.get(BASE_URL + toyId)
 }
 
 function getLabels() {
