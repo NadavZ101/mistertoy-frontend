@@ -26,9 +26,13 @@ export function removeToy(toyId) {
 }
 
 export function saveToy(toy) {
+    console.log("🚀 ~ saveToy ~ toy:", toy)
+
     const type = toy._id ? UPDATE_TOY : ADD_TOY
     return toyService.save(toy)
         .then(savedToy => {
+            console.log("🚀 ~ saveToy ~ savedToy:", savedToy)
+
             store.dispatch({ type, toy: savedToy })
             return savedToy
         })

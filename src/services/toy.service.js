@@ -33,8 +33,6 @@ const toy = {
 }
 
 function query(filterBy = {}) {
-    console.log("🚀 ~ query ~ filterBy:", filterBy)
-
     return httpService.get(BASE_URL, filterBy)
 
 }
@@ -45,6 +43,7 @@ function remove(toyId) {
 
 function save(toy) {
     if (toy._id) {
+
         return httpService.put(BASE_URL, toy)
     }
     else {

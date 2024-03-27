@@ -26,7 +26,7 @@ export function ToyDetails() {
             <h2>Toy Details</h2>
             <h4>Name: {toy.name}</h4>
             <p>Price: ${toy.price}</p>
-            <p>Labels: {toy.labels.join(', ')}</p>
+            <p>Labels: {toy.labels.join(' | ')}</p>
             <p>In Stock: {toy.inStock ? 'Yes' : 'No'}</p>
             <p>Created at: {new Date(toy.createdAt).toLocaleDateString()}</p>
 

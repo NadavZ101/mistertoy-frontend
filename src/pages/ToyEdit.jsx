@@ -4,6 +4,8 @@ import { toyService } from "../services/toy.service";
 
 import { saveToy } from "../store/actions/toy.actions";
 
+import { MultiSelect } from '../cmps/MultiSelect';
+
 export function ToyEdit() {
     const navigate = useNavigate()
     const [toyToEdit, setToyToEdit] = useState(toyService.getEmptyToy())
@@ -31,17 +33,29 @@ export function ToyEdit() {
         let value = target.value === 'number' ? +target.value : target.value
         if (target.type === 'checkbox') {
             value = target.checked
-        } else if (target.multiple) {
-            value = Array.from(target.selectedOptions, option => option.value)
-            setToyToEdit(prevToyToEdit => ({ ...prevToyToEdit, labels: value }))
-            setSelectedLabels(value)
-            return
         }
+        // else if (target.multiple) {
+        //     value = Array.from(target.selectedOptions, option => option.value)
+        //     setToyToEdit(prevToyToEdit => ({ ...prevToyToEdit, labels: value }))
+        //     setSelectedLabels(value)
+        //     return
+        // }
         setToyToEdit(prevToyToEdit => ({ ...prevToyToEdit, [field]: value }))
+    }
+
+    function onSetLabel(label) {
+        const labels = toyToEdit.labels.includes(label)
+            ? toyToEdit.labels.filter(l => l !== label)
+            : [label, ...toyToEdit.labels]
+        console.log("🚀 ~ onSetLabel ~ labels:", labels)
+        setToyToEdit(prevToyToEdit => ({ ...prevToyToEdit, labels }))
+
     }
 
     function onSaveToy(ev) {
         ev.preventDefault()
+
+        console.log("Saving toy with labels:", toyToEdit.labels)
 
         if (!toyToEdit.price) toyToEdit.price = 250
         saveToy(toyToEdit)
@@ -90,7 +104,9 @@ export function ToyEdit() {
                     placeholder="Is in Stock?"
                 />
 
-                <label htmlFor="labels">Labels:</label>
+                <MultiSelect onSetLabel={onSetLabel} toyToEdit={toyToEdit} />
+
+                {/* <label htmlFor="labels">Labels:</label>
                 <select
                     multiple
                     name="labels"
@@ -103,7 +119,7 @@ export function ToyEdit() {
                             {label}
                         </option>
                     })}
-                </select>
+                </select> */}
                 <button className="btn">{toyToEdit._id ? 'Edit' : 'Add'}</button>
             </form>
 

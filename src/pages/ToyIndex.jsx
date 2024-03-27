@@ -31,7 +31,6 @@ export function ToyIndex() {
     }
 
     function onSetFilter(filterBy) {
-        console.log("🚀 ~ onSetFilter ~ filterBy:", filterBy)
 
         setFilterBy(filterBy)
     }
