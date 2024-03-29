@@ -19,7 +19,7 @@ export function ToyFilter({ filterBy, onSetFilter }) {
     }, [filterByToEdit])
 
     function handleChange({ target }) {
-        let { name, value, type, checked } = target
+        let { name, value, type } = target
         if (type === 'checkbox') value = target.checked
         setFilterByToEdit(prevFilter => ({ ...prevFilter, [name]: value }))
     }

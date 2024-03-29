@@ -48,7 +48,6 @@ function query(filterBy = {}, sortBy = {}) {
                 } else {
                     toys = toys.filter(toy => toy.inStock === 'false' || toy.inStock === false)
                 }
-
             }
 
             if (filterBy.label) {
@@ -64,10 +63,11 @@ function query(filterBy = {}, sortBy = {}) {
                 if (sortBy.by === 'price') {
                     toys.sort((toy1, toy2) => sortBy.asc * (toy2.price - toy1.price))
                 }
+
+                if (sortBy.by === 'createdAt') {
+                    toys.sort((toy1, toy2) => sortBy.asc * (toy2.createdAt - toy1.createdAt))
+                }
             }
-            // if (filterBy.sortBy === 'createdAt') {
-            //     toys.sort((toy1, toy2) => dir * (toy2.createdAt - toy1.createdAt))
-            // }
             console.log("🚀 ~ query ~ toys:", toys)
 
             return toys
