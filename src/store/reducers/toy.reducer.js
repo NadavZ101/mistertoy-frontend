@@ -7,13 +7,16 @@ export const ADD_TOY = 'ADD_TOY'
 export const UPDATE_TOY = 'UPDATE_TOY'
 
 export const SET_FILTER_BY = 'SET_FILTER_BY'
+export const SET_SORT_BY = 'SET_SORT_BY'
 
 const initialState = {
     toys: [],
     filterBy: toyService.getDefaultFilter(),
+    sortBy: toyService.getDefaultSort(),
 }
 
 export function toyReducer(state = initialState, action = {}) {
+
     switch (action.type) {
         //* Toys
         case SET_TOYS:
@@ -41,6 +44,12 @@ export function toyReducer(state = initialState, action = {}) {
             return {
                 ...state,
                 filterBy: { ...state.filterBy, ...action.filterBy }
+            }
+
+        case SET_SORT_BY:
+            return {
+                ...state,
+                sortBy: { ...state.sortBy, ...action.sortBy }
             }
 
         default:

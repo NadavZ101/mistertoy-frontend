@@ -3,51 +3,27 @@ import { utilService } from "../services/util.service"
 import { toyService } from "../services/toy.service"
 
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Switch from '@mui/material/Switch';
+
 
 export function ToyFilter({ filterBy, onSetFilter }) {
 
     const [filterByToEdit, setFilterByToEdit] = useState({ ...filterBy })
-    const [sortBy, setSortBy] = useState('')
-    const [isDesc, setIsDesc] = useState(false)
+
 
     onSetFilter = useRef(utilService.debounce(onSetFilter, 500))
 
     const labels = toyService.getLabels()
 
     useEffect(() => {
-        const criteria = { ...filterByToEdit, sortBy, isDesc }
-        onSetFilter.current(criteria)
-    }, [filterByToEdit, sortBy, isDesc])
-
-    // useEffect(() => {
-    //     onSetFilter.current(filterByToEdit)
-    // }, [filterByToEdit, sortBy, isDesc])
+        onSetFilter.current(filterByToEdit)
+    }, [filterByToEdit])
 
     function handleChange({ target }) {
-        const { name, value, type, checked } = target
-
-        if (type === 'checkbox') {
-            if (name === 'inStock') {
-                setFilterByToEdit(prevFilter => ({ ...prevFilter, [name]: checked }))
-            } else if (name === 'desc') {
-                setIsDesc(checked)
-            }
-        } else if (name === 'sort') {
-            setSortBy(value)
-        } else {
-            setFilterByToEdit(prevFilter => ({ ...prevFilter, [name]: value }))
-        }
+        let { name, value, type, checked } = target
+        if (type === 'checkbox') value = target.checked
+        setFilterByToEdit(prevFilter => ({ ...prevFilter, [name]: value }))
     }
-    // function handleChange({ target }) {
-    //     let field = target.name
-    //     let value = target.value === 'number' ? +target.value : target.value
-    //     if (target.type === 'checkbox') {
-    //         value = target.checked
-    //     }
-    //     setFilterByToEdit(prevFilter => ({ ...prevFilter, [field]: value }))
-    // }
+
 
     return (
         <section className="toy-filter full main-layout">
@@ -55,42 +31,25 @@ export function ToyFilter({ filterBy, onSetFilter }) {
             <form>
 
                 <TextField
-                    id="name"
+                    id="txt"
                     label="name"
-                    name="name"
-                    value={filterByToEdit.name}
+                    name="txt"
+                    value={filterByToEdit.txt}
                     onChange={handleChange}
-
-                />
-                {/* <label htmlFor="name">Name:</label>
-                <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    value={filterByToEdit.name}
-                    onChange={handleChange}
-                /> */}
-
-                <FormControlLabel
-                    control={
-                        <Switch
-                            checked={filterByToEdit.inStock === 'true' || filterByToEdit.inStock === true}
-                            onChange={handleChange}
-                            name="inStock"
-                            id="inStock"
-                        />
-                    }
-                    label="inStock"
                 />
 
-                {/* <label htmlFor="inStock">In stock:</label>
-                <input
-                    type="checkbox"
-                    name="inStock"
-                    id="inStock"
-                    checked={filterByToEdit.inStock}
-                    onChange={handleChange}
-                /> */}
+                <label className='filter-label'>
+                    <span className='filter-label'>In stock</span>
+                    <select
+                        onChange={handleChange}
+                        name="inStock"
+                        value={filterByToEdit.inStock || ''}>
+                        <option value=""> All </option>
+                        <option value={true}>In stock</option>
+                        <option value={false}>Out of stock</option>
+                    </select>
+                </label>
+
                 <label htmlFor="label">Label:</label>
                 <select
                     name="label"
@@ -104,23 +63,6 @@ export function ToyFilter({ filterBy, onSetFilter }) {
                     ))}
                 </select>
 
-                <label htmlFor="sort">Sort by:</label>
-                <select name="sort" id="sort" value={sortBy} onChange={handleChange}>
-                    <option value="">Select</option>
-                    <option value="name">Name</option>
-                    <option value="price">Price</option>
-                    <option value="createdAt">Created</option>
-                </select>
-
-
-                <label htmlFor="desc">Descending:</label>
-                <input
-                    type="checkbox"
-                    name="desc"
-                    id="desc"
-                    checked={isDesc}
-                    onChange={handleChange}
-                />
             </form>
         </section>
     )
