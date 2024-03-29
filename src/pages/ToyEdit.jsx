@@ -30,16 +30,13 @@ export function ToyEdit() {
 
     function handleChange({ target }) {
         const field = target.name
-        let value = target.value === 'number' ? +target.value : target.value
+        let value
         if (target.type === 'checkbox') {
             value = target.checked
+        } else {
+            value = target.value === 'number' ? +target.value : target.value
         }
-        // else if (target.multiple) {
-        //     value = Array.from(target.selectedOptions, option => option.value)
-        //     setToyToEdit(prevToyToEdit => ({ ...prevToyToEdit, labels: value }))
-        //     setSelectedLabels(value)
-        //     return
-        // }
+
         setToyToEdit(prevToyToEdit => ({ ...prevToyToEdit, [field]: value }))
     }
 
@@ -99,27 +96,12 @@ export function ToyEdit() {
                     type="checkbox"
                     name="inStock"
                     id="inStock"
-                    value={toyToEdit.inStock}
+                    checked={toyToEdit.inStock}
                     onChange={handleChange}
-                    placeholder="Is in Stock?"
                 />
 
                 <MultiSelect onSetLabel={onSetLabel} toyToEdit={toyToEdit} />
 
-                {/* <label htmlFor="labels">Labels:</label>
-                <select
-                    multiple
-                    name="labels"
-                    id="labels"
-                    value={selectedLabels}
-                    onChange={handleChange}
-                >
-                    {labels.map((label, idx) => {
-                        return <option key={idx} value={label}>
-                            {label}
-                        </option>
-                    })}
-                </select> */}
                 <button className="btn">{toyToEdit._id ? 'Edit' : 'Add'}</button>
             </form>
 
