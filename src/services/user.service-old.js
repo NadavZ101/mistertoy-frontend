@@ -1,11 +1,10 @@
 import { storageService } from "./async-storage.service.js"
-import { httpService } from "./http.service.js"
 
+const USERS_KEY = 'userDB'
 const LOGGEDIN_KEY = 'user'
 
-const BASE_URL = 'auth/'
-
 export const userService = {
+    query,
     login,
     signup,
     logout,
@@ -14,10 +13,22 @@ export const userService = {
     getEmptyCredentials,
 }
 
+function query() {
+    return storageService.query(USERS_KEY)
+}
+
 function login({ username, password }) {
-    return httpService.post(BASE_URL + 'login', { username, password })
-        .then(user => {
-            if (user) return _setLoggedInUser(user)
+    console.log("🚀 ~ login ~ username:", username)
+    console.log("🚀 ~ login ~ password:", password)
+
+    return storageService.query(USERS_KEY)
+        .then(users => {
+            const user = users.find(user => user.username === username && user.password === password)
+            if (user) {
+
+                console.log("🚀 ~ login ~ user:", user)
+                return _setLoggedInUser(user)
+            }
             else return Promise.reject('Invalid login')
         })
 }
@@ -28,24 +39,17 @@ function signup({ username, password, fullname }) {
         password,
         fullname,
     }
+    console.log("🚀 ~ signup ~ user:", user)
 
-    return httpService.post(BASE_URL + 'signup', user)
-        .then(user => {
-            if (user) return _setLoggedInUser(user)
-            else return Promise.reject('Invalid signup')
-        })
+
+    return storageService.post(USERS_KEY, user)
+        .then(_setLoggedInUser)
 }
 
 function logout() {
-    return httpService.post(BASE_URL + 'logout')
-        .then(() => {
-            sessionStorage.removeItem(LOGGEDIN_KEY)
-        })
+    sessionStorage.removeItem(LOGGEDIN_KEY)
+    return Promise.resolve()
 
-}
-
-function getUserById(userId) {
-    return httpService.get('user/' + userId)
 }
 
 function getLoggedInUser() {
@@ -54,6 +58,9 @@ function getLoggedInUser() {
     return user
 }
 
+function getUserById(userId) {
+    return storageService.get(USERS_KEY, userId)
+}
 
 function getEmptyCredentials() {
     return {
