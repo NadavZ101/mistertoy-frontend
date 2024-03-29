@@ -14,6 +14,7 @@ export const toyService = {
     getToyById,
     getLabels,
     getDefaultFilter,
+    getDefaultSort,
 }
 
 
@@ -32,8 +33,12 @@ const toy = {
     inStock: true,
 }
 
-function query(filterBy = {}) {
-    return httpService.get(BASE_URL, filterBy)
+function query(filterBy = {}, sortBy = {}) {
+    console.log("🚀 ~ query ~ sortBy:", sortBy)
+    console.log("🚀 ~ query ~ filterBy:", filterBy)
+
+
+    return httpService.get(BASE_URL, { params: { filterBy, sortBy } })
 
 }
 
@@ -64,7 +69,15 @@ function getLabels() {
 }
 
 function getDefaultFilter() {
-    return { name: '', inStock: '', label: '' }
+    return { txt: '', inStock: '', label: '' }
+}
+
+// function getDefaultFilter() {
+//     return { name: '', inStock: null, label: '' }
+// }
+
+function getDefaultSort() {
+    return { by: '', asc: true }
 }
 
 

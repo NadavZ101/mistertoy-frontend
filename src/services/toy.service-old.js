@@ -3,7 +3,7 @@ import { utilService } from "./util.service.js"
 
 const TOYS_KEY = 'toyDB'
 
-export const toyService = {
+export const oldToyService = {
     query,
     remove,
     save,
@@ -29,41 +29,47 @@ const toy = {
     inStock: true,
 }
 
-function query(filterBy = {}) {
+function query(filterBy = {}, sortBy = {}) {
+    console.log("🚀 ~ query ~ sortBy:", sortBy)
+    console.log("🚀 ~ query ~ filterBy:", filterBy)
 
     return storageService.query(TOYS_KEY)
         .then(toys => {
-            if (filterBy.name) {
-                const regex = new RegExp(filterBy.name, 'i')
+
+            if (filterBy.txt) {
+                const regex = new RegExp(filterBy.txt, 'i')
                 toys = toys.filter(toy => regex.test(toy.name))
             }
 
-            if (filterBy.inStock !== undefined) {
+            if (filterBy.inStock !== '') {
 
-                const inStock = filterBy.inStock === true
-                toys = toys.filter(toy => toy.inStock === inStock)
+                if (filterBy.inStock === 'true' || filterBy.inStock === true) {
+                    toys = toys.filter(toy => toy.inStock === 'true' || toy.inStock === true)
+                } else {
+                    toys = toys.filter(toy => toy.inStock === 'false' || toy.inStock === false)
+                }
+
             }
 
             if (filterBy.label) {
                 toys = toys.filter(toy => toy.labels.includes(filterBy.label))
             }
 
-            if (filterBy.sortBy) {
-                let dir
-                if (filterBy.isDesc) dir = 1
-                else dir = -1
+            if (sortBy.by) {
 
-                if (filterBy.sortBy === 'name') {
-                    toys.sort((toy1, toy2) => dir * toy2.name.localCompare(toy1.name))
-                }
-                if (filterBy.sortBy === 'price') {
-                    toys.sort((toy1, toy2) => dir * (toy2.price - toy1.price))
-                }
-                if (filterBy.sortBy === 'createdAt') {
-                    toys.sort((toy1, toy2) => dir * (toy2.createdAt - toy1.createdAt))
+                if (sortBy.by === 'name') {
+                    toys.sort((toy1, toy2) => sortBy.asc * toy2.name.localeCompare(toy1.name))
                 }
 
+                if (sortBy.by === 'price') {
+                    toys.sort((toy1, toy2) => sortBy.asc * (toy2.price - toy1.price))
+                }
             }
+            // if (filterBy.sortBy === 'createdAt') {
+            //     toys.sort((toy1, toy2) => dir * (toy2.createdAt - toy1.createdAt))
+            // }
+            console.log("🚀 ~ query ~ toys:", toys)
+
             return toys
         })
 }
@@ -93,7 +99,7 @@ function save(toy) {
 }
 
 function getEmptyToy() {
-    return { name: '', price: '', labels: [], createdAt: '', inStock: '' }
+    return { name: '', price: '', labels: [], createdAt: '', inStock: 'true' }
 }
 
 function getToyById(toyId) {
@@ -105,7 +111,7 @@ function getLabels() {
 }
 
 function getDefaultFilter() {
-    return { name: '', inStock: '', label: '' }
+    return { txt: '', inStock: '', label: '' }
 }
 
 
