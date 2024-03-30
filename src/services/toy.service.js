@@ -34,11 +34,7 @@ const toy = {
 }
 
 function query(filterBy = {}, sortBy = {}) {
-    console.log("🚀 ~ query ~ sortBy:", sortBy)
-    console.log("🚀 ~ query ~ filterBy:", filterBy)
-
     return httpService.get(BASE_URL, { params: { filterBy, sortBy } })
-
 }
 
 function remove(toyId) {

@@ -34,7 +34,7 @@ export function ToyEdit() {
         if (target.type === 'checkbox') {
             value = target.checked
         } else {
-            value = target.value === 'number' ? +target.value : target.value
+            value = target.type === 'number' ? +target.value : target.value
         }
 
         setToyToEdit(prevToyToEdit => ({ ...prevToyToEdit, [field]: value }))
