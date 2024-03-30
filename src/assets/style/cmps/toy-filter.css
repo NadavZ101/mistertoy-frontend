@@ -1,5 +1,41 @@
 .toy-filter form {
     display: flex;
+    flex-wrap: wrap;
     gap: 10px;
-    align-items: center;
+    /* align-items: center; */
+    justify-content: center;
+    gap: 20px;
+}
+
+.filter-name {
+    padding: 0;
+}
+
+.filter-stock {
+    display: flex;
+    font-size: 1.1em;
+    justify-content: space-between;
+}
+
+label.filter-label,
+.filter-label span,
+.filter-stock span {
+    display: flex;
+    /* flex-direction: column; */
+    font-size: 1.1em;
+    /* height: 30px; */
+    align-self: center;
+    margin-right: 7px;
+    justify-content: space-between;
+}
+
+label.filter-label select,
+.filter-stock select {
+    display: flex;
+    /* flex-direction: column; */
+    font-size: 1em;
+    height: 50px;
+    align-self: center;
+    /* justify-self: center; */
+
 }

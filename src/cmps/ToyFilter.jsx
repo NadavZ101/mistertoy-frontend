@@ -3,6 +3,9 @@ import { utilService } from "../services/util.service"
 import { toyService } from "../services/toy.service"
 
 import TextField from '@mui/material/TextField';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
 
 
 export function ToyFilter({ filterBy, onSetFilter }) {
@@ -27,10 +30,10 @@ export function ToyFilter({ filterBy, onSetFilter }) {
 
     return (
         <section className="toy-filter full main-layout">
-            <h4>Filter Our Toys</h4>
+            <h3>Filter Our Toys</h3>
             <form>
 
-                <TextField
+                <TextField className="filter-name"
                     id="txt"
                     label="name"
                     name="txt"
@@ -38,8 +41,8 @@ export function ToyFilter({ filterBy, onSetFilter }) {
                     onChange={handleChange}
                 />
 
-                <label className='filter-label'>
-                    <span className='filter-label'>In stock</span>
+                <label className='filter-stock'>
+                    <span className='filter-stock'>In stock:</span>
                     <select
                         onChange={handleChange}
                         name="inStock"
@@ -50,18 +53,20 @@ export function ToyFilter({ filterBy, onSetFilter }) {
                     </select>
                 </label>
 
-                <label htmlFor="label">Label:</label>
-                <select
-                    name="label"
-                    id="label"
-                    value={filterByToEdit.label}
-                    onChange={handleChange}
-                >
-                    <option value="">All Labels</option>
-                    {labels.map((label, idx) => (
-                        <option key={idx} value={label}>{label}</option>
-                    ))}
-                </select>
+                <label className="filter-label" htmlFor="label">
+                    <span className='filter-label'>Label:</span>
+                    <select
+                        name="label"
+                        id="label"
+                        value={filterByToEdit.label}
+                        onChange={handleChange}
+                    >
+                        <option value="">All Labels</option>
+                        {labels.map((label, idx) => (
+                            <option key={idx} value={label}>{label}</option>
+                        ))}
+                    </select>
+                </label>
 
             </form>
         </section>
