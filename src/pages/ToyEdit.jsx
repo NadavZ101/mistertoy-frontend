@@ -30,12 +30,7 @@ export function ToyEdit() {
 
     function handleChange({ target }) {
         const field = target.name
-        let value
-        if (target.type === 'checkbox') {
-            value = target.checked
-        } else {
-            value = target.type === 'number' ? +target.value : target.value
-        }
+        const value = target.type === 'number' ? +target.value : target.value
 
         setToyToEdit(prevToyToEdit => ({ ...prevToyToEdit, [field]: value }))
     }
@@ -49,13 +44,22 @@ export function ToyEdit() {
 
     }
 
+    function isInStock() {
+        return toyToEdit.inStock
+    }
+
     function onSaveToy(ev) {
         ev.preventDefault()
 
         console.log("Saving toy with labels:", toyToEdit.labels)
 
-        if (!toyToEdit.price) toyToEdit.price = 250
-        saveToy(toyToEdit)
+        const newToy = {
+            ...toyToEdit,
+            inStock: (toyToEdit.inStock === 'true') ? true : false
+        }
+
+        if (!newToy.price) newToy.price = 250
+        saveToy(newToy)
             .then(() => {
                 navigate('/toy')
             })
@@ -91,14 +95,22 @@ export function ToyEdit() {
                     placeholder="Enter price..."
                 />
 
-                <label htmlFor="inStock">In stock:</label>
+                <select
+                    name="inStock"
+                    value={isInStock()}
+                    onChange={handleChange}
+                >
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+                {/* <label htmlFor="inStock">In stock:</label>
                 <input
                     type="checkbox"
                     name="inStock"
                     id="inStock"
                     checked={toyToEdit.inStock}
                     onChange={handleChange}
-                />
+                /> */}
 
                 <MultiSelect onSetLabel={onSetLabel} toyToEdit={toyToEdit} />
 

@@ -52,7 +52,7 @@ function save(toy) {
 }
 
 function getEmptyToy() {
-    return { name: '', price: '', labels: [], createdAt: '', inStock: '' }
+    return { name: '', price: '', labels: [], createdAt: '', inStock: true }
 }
 
 function getToyById(toyId) {
