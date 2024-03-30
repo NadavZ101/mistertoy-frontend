@@ -1,5 +1,6 @@
 import { storageService } from "./async-storage.service.js"
 import { httpService } from "./http.service.js"
+import { userService } from "./user.service.js"
 import { utilService } from "./util.service.js"
 
 const TOYS_KEY = 'toyDB'
@@ -15,6 +16,7 @@ export const toyService = {
     getLabels,
     getDefaultFilter,
     getDefaultSort,
+    addToyMsg
 }
 
 
@@ -52,7 +54,7 @@ function save(toy) {
 }
 
 function getEmptyToy() {
-    return { name: '', price: '', labels: [], createdAt: '', inStock: true }
+    return { name: '', price: '', labels: [], createdAt: '', inStock: true, msgs: [] }
 }
 
 function getToyById(toyId) {
@@ -73,6 +75,21 @@ function getDefaultFilter() {
 
 function getDefaultSort() {
     return { by: '', asc: true }
+}
+
+async function addToyMsg(toyId, txt) {
+    const toy = await getToyById(toyId)
+    if (!toy.msgs) toy.msgs = []
+
+    const msg = {
+        id: utilService.makeId(),
+        by: userService.getLoggedInUser(),
+        txt
+    }
+
+    toy.msgs.push(msg)
+    const savedMsg = await httpService.post(`toy/${toyId}/msg`, { txt })
+    return savedMsg
 }
 
 

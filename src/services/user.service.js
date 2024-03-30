@@ -6,6 +6,7 @@ const LOGGEDIN_KEY = 'user'
 const BASE_URL = 'auth/'
 
 export const userService = {
+    query,
     login,
     signup,
     logout,
@@ -14,9 +15,15 @@ export const userService = {
     getEmptyCredentials,
 }
 
-function login({ username, password }) {
-    return httpService.post(BASE_URL + 'login', { username, password })
+function query() {
+    return httpService.get('user')
+}
+
+function login(userCred) {
+    return httpService.post(BASE_URL + 'login', userCred)
         .then(user => {
+            console.log("🚀 ~ userService -- login ~ user:", user)
+
             if (user) return _setLoggedInUser(user)
             else return Promise.reject('Invalid login')
         })
@@ -27,10 +34,13 @@ function signup({ username, password, fullname }) {
         username,
         password,
         fullname,
+        isAdmin: false
     }
 
     return httpService.post(BASE_URL + 'signup', user)
         .then(user => {
+            console.log("🚀 ~ userService->signup ~ user:", user)
+
             if (user) return _setLoggedInUser(user)
             else return Promise.reject('Invalid signup')
         })
@@ -60,6 +70,7 @@ function getEmptyCredentials() {
         username: '',
         password: '',
         fullname: '',
+        isAdmin: false,
     }
 }
 
