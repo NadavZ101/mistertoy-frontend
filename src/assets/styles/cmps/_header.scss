@@ -1,0 +1,33 @@
+header {
+    background-color: rgb(120 209 238);
+
+    .header-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0 20px;
+
+        h1 {
+            font-size: 3.5em;
+            margin: 20px 0;
+            font-family: RubikScribble;
+            color: rgb(232, 10, 81)
+        }
+
+        .app-nav {
+            flex: 0.6;
+            justify-content: space-between;
+            font-size: 1.2em;
+        }
+
+        a {
+            font-family: RubikScribble;
+            color: rgb(230, 46, 36);
+            font-size: 1.2em;
+            text-decoration: none;
+        }
+    }
+
+
+}

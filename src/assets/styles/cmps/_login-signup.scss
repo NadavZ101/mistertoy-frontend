@@ -1,0 +1,20 @@
+.login-signup {
+    margin: 5px 20px;
+
+    .login-form {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+        align-items: center;
+
+        margin-bottom: 7px;
+
+        input {
+            height: em(25px, 16px)
+        }
+
+        a {
+            @include btn($type: regular);
+        }
+    }
+}

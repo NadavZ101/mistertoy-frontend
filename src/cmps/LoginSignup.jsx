@@ -32,7 +32,7 @@ export function LoginSignup() {
 
     const { username, password, fullname } = credentials
 
-    return <div className="login-page">
+    return <div className="login-signup">
         <form className="login-form" onSubmit={onSubmit}>
             <input
                 type='text'

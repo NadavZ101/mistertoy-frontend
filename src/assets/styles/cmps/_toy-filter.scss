@@ -1,0 +1,47 @@
+.toy-filter {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1em;
+
+    h3 {
+        margin-right: 7px;
+    }
+
+    form {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        /* align-items: center; */
+        justify-content: center;
+        gap: 20px;
+
+        .filter-stock {
+            display: flex;
+            font-size: 1.1em;
+            justify-content: space-between;
+        }
+
+        .filter-label,
+        span {
+            display: flex;
+            font-size: 1.1em;
+            align-self: center;
+            margin-right: 7px;
+            justify-content: space-between;
+        }
+
+        label.filter-label select,
+        .filter-stock select {
+            display: flex;
+            font-size: 1em;
+            height: rem(54px);
+            align-self: center;
+        }
+    }
+}
+
+
+
+// .filter-name {
+//     padding: 0;
+// }
