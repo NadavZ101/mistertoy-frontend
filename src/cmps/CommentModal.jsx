@@ -25,8 +25,8 @@ export function CommentModal({ isOpen, onClose, onSave }) {
                         placeholder="Enter your comment"
                     />
                 </pre>
-                <button className="btn" onClick={handleSave}>Write</button>
-                <button className="btn" onClick={onClose}>Cancel</button>
+                <button onClick={handleSave}>Write</button>
+                <button onClick={onClose}>Cancel</button>
             </div>
         </div>
     )

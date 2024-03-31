@@ -1,0 +1,31 @@
+.toy-details {
+
+    a {
+        @include btn($type: page);
+        border-radius: 5px;
+        width: em(50px);
+    }
+
+    .toy-details-container {
+        display: flex;
+        flex-direction: column;
+        grid-area: details;
+        font-size: 1.2em;
+
+        p {
+            margin: em(10px) 0;
+        }
+
+        img {
+            width: em(200px);
+            margin-bottom: em(7px);
+        }
+
+    }
+
+    button.btn {
+        @include btn($type: page);
+        border-radius: 5px;
+        width: em(150px);
+    }
+}

@@ -53,6 +53,9 @@ export function ToyIndex() {
             {/* <button className="add-toy-btn"><Link to="/toy/edit">Add Toy</Link>
             </button> */}
 
+            <Link className="add-toy-link" to="/toy/edit">Add Toy</Link>
+
+
             <ToyList
                 toys={toys}
                 onRemoveToy={onRemoveToy}

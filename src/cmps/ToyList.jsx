@@ -4,9 +4,8 @@ import { ToyPreview } from "./ToyPreview"
 export function ToyList({ toys, onRemoveToy, onEditToy }) {
 
     return <div>
-        <Link to="/toy/edit">Add Toy</Link>
 
-        <ul className="toy-list clean-list grid cards">
+        <ul className="toy-list clean-list">
             {
                 toys.map(toy =>
                     <li className="toy-preview card flex center column" key={toy._id}>

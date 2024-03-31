@@ -4,5 +4,9 @@
     a {
         @include btn($type: regular);
         border-radius: 5px;
+
+        .add-toy-link {
+            margin-bottom: 10px;
+        }
     }
 }

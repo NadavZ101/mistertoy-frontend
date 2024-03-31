@@ -1,5 +1,5 @@
 @mixin btn($type: regular, $padding: em(5px) em(20px), $hover: darken($clr3, 8%)) {
-    display: inline-flex;
+    // display: inline-flex;
     align-items: center;
     text-decoration: none;
     text-transform: uppercase;
@@ -50,4 +50,24 @@
             color: $clr3;
         }
     }
+
+    @else if $type ==page {
+        background-color: $clr5;
+        color: $clr2;
+
+        &:hover {
+            background-color: $hover;
+            // color: $clr3;
+        }
+    }
+}
+
+@mixin input {
+    // display: inline-flex;
+    // width: 100%;
+    width: em(300px);
+    height: em(30px);
+    padding: 12px 20px;
+    box-sizing: border-box;
+
 }

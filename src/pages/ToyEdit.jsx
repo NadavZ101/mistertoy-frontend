@@ -71,52 +71,55 @@ export function ToyEdit() {
     const labels = toyService.getLabels()
 
     return (
-        <section className="toy-edit">
-            <h2>{toyToEdit._id ? 'Edit' : 'Add'} Toy</h2>
+        <section className="toy-edit-container">
+            <div className="toy-edit">
+                <h2>{toyToEdit._id ? 'Edit' : 'Add'} Toy</h2>
 
-            <form onSubmit={onSaveToy}>
-                <label htmlFor="name">Name:</label>
-                <input
-                    type="text"
-                    name="name"
-                    id="name"
-                    value={toyToEdit.name}
-                    onChange={handleChange}
-                    placeholder="Enter name..."
-                />
+                <form onSubmit={onSaveToy}>
+                    <label className="name-label" htmlFor="name">Name:</label>
+                    <input
+                        type="text"
+                        name="name"
+                        id="name"
+                        value={toyToEdit.name}
+                        onChange={handleChange}
+                        placeholder="Enter name..."
+                    />
 
-                <label htmlFor="price">Price:</label>
-                <input
-                    type="number"
-                    name="price"
-                    id="price"
-                    value={toyToEdit.price}
-                    onChange={handleChange}
-                    placeholder="Enter price..."
-                />
+                    <label className="price-label" htmlFor="price">Price:</label>
+                    <input
+                        type="number"
+                        name="price"
+                        id="price"
+                        value={toyToEdit.price}
+                        onChange={handleChange}
+                        placeholder="Enter price..."
+                    />
 
-                <select
-                    name="inStock"
-                    value={isInStock()}
-                    onChange={handleChange}
-                >
-                    <option value="true">Yes</option>
-                    <option value="false">No</option>
-                </select>
-                {/* <label htmlFor="inStock">In stock:</label>
-                <input
-                    type="checkbox"
-                    name="inStock"
-                    id="inStock"
-                    checked={toyToEdit.inStock}
-                    onChange={handleChange}
-                /> */}
+                    <label className="stock-label" htmlFor="inStock">In stock:</label>
+                    <select
+                        name="inStock"
+                        value={isInStock()}
+                        onChange={handleChange}
+                    >
+                        <option value="true">Yes</option>
+                        <option value="false">No</option>
+                    </select>
 
-                <MultiSelect onSetLabel={onSetLabel} toyToEdit={toyToEdit} />
+                    {/* <label htmlFor="inStock">In stock:</label>
+                    <input
+                        type="checkbox"
+                        name="inStock"
+                        id="inStock"
+                        checked={toyToEdit.inStock}
+                        onChange={handleChange}
+                    /> */}
 
-                <button className="btn">{toyToEdit._id ? 'Edit' : 'Add'}</button>
-            </form>
+                    <MultiSelect onSetLabel={onSetLabel} toyToEdit={toyToEdit} />
 
+                    <button className="btn">{toyToEdit._id ? 'Edit' : 'Add'}</button>
+                </form>
+            </div>
         </section>
     )
 }

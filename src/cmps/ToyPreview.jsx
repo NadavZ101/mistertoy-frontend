@@ -30,11 +30,12 @@ export function ToyPreview({ toy, onRemoveToy }) {
                 </CardContent>
             </CardActionArea>
             <CardActions>
-                <Button className="btn"><Link to={`/toy/edit/${toy._id}`}>Edit</Link></Button>
+
+                <Link className="link" to={`/toy/edit/${toy._id}`}>Edit</Link>
 
                 &nbsp; | &nbsp;
 
-                <Button className="btn"><Link to={`/toy/${toy._id}`}>Details</Link></Button>
+                <Link className="link" to={`/toy/${toy._id}`}>Details</Link>
                 {/* <Button className="btn" onClick={() => onRemoveToy(toy._id)}></Button> */}
 
                 &nbsp; | &nbsp;

@@ -1,0 +1,15 @@
+.comment-modal {
+
+    textarea {
+        height: em(200px);
+        width: em(250px);
+    }
+
+    button {
+        @include btn($type: page);
+        border-radius: 5px;
+        width: em(100px);
+
+        margin-left: 5px;
+    }
+}

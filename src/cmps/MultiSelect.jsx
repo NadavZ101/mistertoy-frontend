@@ -9,7 +9,7 @@ export function MultiSelect({ onSetLabel, toyToEdit }) {
 
     return <section className="multi-select" onMouseLeave={() => setIsOptionsModalOpen(false)}>
         <div className="selected-options-container" onClick={() => setIsOptionsModalOpen(prev => !prev)}>
-            selected :
+            Selected:
             {!!toyToEdit.labels.length && toyToEdit.labels.map(label => <div key={label}>{label},</div>)}
             {!toyToEdit.labels.length && <div> no labels yet</div>}
         </div>

@@ -1,0 +1,83 @@
+.toy-edit-container {
+
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    // flex-direction: column;
+    // flex-wrap: wrap;
+
+    .toy-edit {
+        margin-top: em(30px);
+        width: 80%;
+        background: white;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+        z-index: 1001;
+
+        h2 {
+            text-align: center;
+        }
+
+        form {
+            gap: 15px;
+            display: flex;
+            flex-direction: column;
+            // justify-content: space-between;
+            justify-items: center;
+            align-items: center;
+
+            label {
+                margin-right: 10px;
+                align-items: center;
+            }
+
+            .stock-label {
+                // display: flex;
+                align-self: center;
+
+            }
+
+            input#name,
+            input#price,
+            select {
+                @include input;
+            }
+
+
+
+        }
+
+
+        .multi-select {
+
+            select#labels {
+                width: auto;
+            }
+
+            .selected-options-container {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+            }
+
+            div {
+                margin: 10px 0;
+            }
+
+            .options-container {
+                div {
+
+                    height: em(30px);
+                    border: 1px solid;
+                }
+            }
+        }
+
+        button {
+            @include btn($type: page);
+            border-radius: 5px;
+            width: em(70px);
+        }
+    }
+}

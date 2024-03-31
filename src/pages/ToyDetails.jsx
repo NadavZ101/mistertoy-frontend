@@ -49,12 +49,13 @@ export function ToyDetails() {
 
     if (!toy) return <div>Loading toy...</div>
     return (
-        <section className="toy-details grid column">
+        <section className="toy-details">
             <h2>Toy Details</h2>
-            <Link to="/toy"><button className="btn">←</button></Link>
-            <section className="toy-details-container flex column">
-                <p>Name: {toy.name}</p>
+            <Link to="/toy">←</Link>
+            <section className="toy-details-container">
+                <p>{toy.name}</p>
                 <p>Price: ${toy.price}</p>
+                <img className="toy-details-img" src={`https://robohash.org/${toy.name}?set=set2`} />
                 <p>Labels: {toy.labels.join(' | ')}</p>
                 <p>In Stock: {toy.inStock ? 'Yes' : 'No'}</p>
                 <p>Created at: {new Date(toy.createdAt).toLocaleDateString()}</p>
@@ -71,22 +72,20 @@ export function ToyDetails() {
                     }
                 </p>
 
-                <Button className="btn" onClick={() => setIsCommentModalOpen(true)} variant="Add Comment">Add Comment</Button>
+                {/* <Button className="btn" onClick={() => setIsCommentModalOpen(true)} variant="Add Comment">Add Comment</Button> */}
 
-                {/* <button className="btn" onClick={() => setIsCommentModalOpen(true)}>
-                    Add Comment
-                </button> */}
-
-                <CommentModal
-                    isOpen={isCommentModalOpen}
-                    onClose={() => setIsCommentModalOpen(false)}
-                    onSave={(comment) => saveComment(comment)}
-                />
 
             </section>
 
-            <img className="toy-details-img" src={`https://robohash.org/${toy.name}?set=set2`} />
+            <button className="btn" onClick={() => setIsCommentModalOpen(true)}>
+                Add Comment
+            </button>
 
+            <CommentModal
+                isOpen={isCommentModalOpen}
+                onClose={() => setIsCommentModalOpen(false)}
+                onSave={(comment) => saveComment(comment)}
+            />
 
         </section>
     )
