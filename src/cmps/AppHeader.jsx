@@ -22,7 +22,7 @@ export function AppHeader() {
     return (
         <header className="app-header full">
             <section className="header-container">
-                <h1>Toys Land</h1>
+                <NavLink to="/"><h1>Toys Land</h1></NavLink>
                 <nav className="app-nav flex">
                     <NavLink to="/">Home</NavLink>
                     <NavLink to="/toy">Our Toys</NavLink>

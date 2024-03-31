@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { toyService } from "../services/toy.service";
 
 import { saveToy } from "../store/actions/toy.actions";
@@ -118,6 +118,8 @@ export function ToyEdit() {
                     <MultiSelect onSetLabel={onSetLabel} toyToEdit={toyToEdit} />
 
                     <button className="btn">{toyToEdit._id ? 'Edit' : 'Add'}</button>
+
+                    <Link className="link" to="/toy">Back</Link>
                 </form>
             </div>
         </section>

@@ -10,7 +10,7 @@
 @import 'base/layout';
 
 // COMPONENTS
-@import 'cmps/header';
+@import 'cmps/app-header';
 @import 'cmps/login-signup';
 @import 'cmps/toy-filter';
 @import 'cmps/toy-sort';
@@ -22,3 +22,4 @@
 @import 'pages/toy-index';
 @import 'pages/toy-details';
 @import 'pages/toy-edit';
+@import 'pages/home-page';

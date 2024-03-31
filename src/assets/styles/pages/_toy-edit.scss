@@ -1,10 +1,10 @@
 .toy-edit-container {
 
-    // display: flex;
-    // justify-content: center;
-    // align-items: center;
-    // flex-direction: column;
-    // flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
 
     .toy-edit {
         margin-top: em(30px);
@@ -43,9 +43,6 @@
             select {
                 @include input;
             }
-
-
-
         }
 
 
@@ -68,6 +65,7 @@
             .options-container {
                 div {
 
+                    width: em(200px);
                     height: em(30px);
                     border: 1px solid;
                 }
@@ -78,6 +76,13 @@
             @include btn($type: page);
             border-radius: 5px;
             width: em(70px);
+        }
+
+        .link {
+            @include btn($type: page);
+            padding: 0.3125em 1em;
+            border-radius: 5px;
+            width: em(41px);
         }
     }
 }
