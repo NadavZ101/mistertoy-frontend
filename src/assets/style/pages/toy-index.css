@@ -1,0 +1,21 @@
+.toy-index {
+    background-color: whitesmoke;
+}
+
+.toy-index .add-toy-btn {
+    background-color: rgb(161, 161, 230);
+    height: 60px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    color: black
+}
+
+.toy-index .add-toy-btn a {
+    text-decoration: none;
+}
+
+.toy-index .add-toy-btn:hover {
+    background-color: rgba(108, 191, 232, 0.921);
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}

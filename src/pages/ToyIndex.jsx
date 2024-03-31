@@ -50,8 +50,8 @@ export function ToyIndex() {
             <ToyFilter filterBy={filterBy} onSetFilter={onSetFilter} />
             <ToySort sortBy={sortBy} onSetSort={onSetSort} />
 
-            <button className="btn"><Link to="/toy/edit">Add Toy</Link>
-            </button>
+            {/* <button className="add-toy-btn"><Link to="/toy/edit">Add Toy</Link>
+            </button> */}
 
             <ToyList
                 toys={toys}

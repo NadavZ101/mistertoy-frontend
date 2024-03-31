@@ -29,8 +29,8 @@ export function ToyFilter({ filterBy, onSetFilter }) {
 
 
     return (
-        <section className="toy-filter full main-layout">
-            <h3>Filter Our Toys</h3>
+        <section className="toy-filter flex">
+            <h3>Filter Our Toys:</h3>
             <form>
 
                 <TextField className="filter-name"

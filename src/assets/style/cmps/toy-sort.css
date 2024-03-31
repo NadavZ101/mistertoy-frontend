@@ -1,0 +1,19 @@
+.toy-sort {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 1em;
+}
+
+.toy-sort h3 {
+    margin-right: 7px;
+}
+
+.toy-sort .btn {
+    background-color: rgb(161, 161, 230);
+}
+
+.toy-sort .btn:hover {
+    background-color: rgba(108, 191, 232, 0.921);
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}

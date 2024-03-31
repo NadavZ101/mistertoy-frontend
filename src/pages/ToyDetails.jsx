@@ -6,6 +6,8 @@ import { toyService } from "../services/toy.service.js"
 import { UserComments } from "../cmps/UserComments.jsx"
 import { CommentModal } from "../cmps/CommentModal.jsx"
 
+import Button from '@mui/material/Button';
+
 export function ToyDetails() {
     const [toy, setToy] = useState(null)
     const [msg, setMsg] = useState(null)
@@ -47,39 +49,45 @@ export function ToyDetails() {
 
     if (!toy) return <div>Loading toy...</div>
     return (
-        <section className="toy-details flex column">
+        <section className="toy-details grid column">
             <h2>Toy Details</h2>
-            <h4>Name: {toy.name}</h4>
-            <p>Price: ${toy.price}</p>
-            <p>Labels: {toy.labels.join(' | ')}</p>
-            <p>In Stock: {toy.inStock ? 'Yes' : 'No'}</p>
-            <p>Created at: {new Date(toy.createdAt).toLocaleDateString()}</p>
+            <Link to="/toy"><button className="btn">←</button></Link>
+            <section className="toy-details-container flex column">
+                <p>Name: {toy.name}</p>
+                <p>Price: ${toy.price}</p>
+                <p>Labels: {toy.labels.join(' | ')}</p>
+                <p>In Stock: {toy.inStock ? 'Yes' : 'No'}</p>
+                <p>Created at: {new Date(toy.createdAt).toLocaleDateString()}</p>
 
 
-            <p>Users Comments:
-                {
-                    toy.msgs &&
+                <p>Users Comments:
+                    {
+                        toy.msgs &&
 
-                    toy.msgs.map(msg =>
-                        <div className="user-msgs" key={msg.id}>
-                            <UserComments msg={msg} setMsg={setMsg} />
-                        </div>)
-                }
-            </p>
+                        toy.msgs.map(msg =>
+                            <div className="user-msgs" key={msg.id}>
+                                <UserComments msg={msg} setMsg={setMsg} />
+                            </div>)
+                    }
+                </p>
 
-            <button className="btn" onClick={() => setIsCommentModalOpen(true)}>
-                Add Comment
-            </button>
-            <CommentModal
-                isOpen={isCommentModalOpen}
-                onClose={() => setIsCommentModalOpen(false)}
-                onSave={(comment) => saveComment(comment)}
-            />
+                <Button className="btn" onClick={() => setIsCommentModalOpen(true)} variant="Add Comment">Add Comment</Button>
+
+                {/* <button className="btn" onClick={() => setIsCommentModalOpen(true)}>
+                    Add Comment
+                </button> */}
+
+                <CommentModal
+                    isOpen={isCommentModalOpen}
+                    onClose={() => setIsCommentModalOpen(false)}
+                    onSave={(comment) => saveComment(comment)}
+                />
+
+            </section>
 
             <img className="toy-details-img" src={`https://robohash.org/${toy.name}?set=set2`} />
 
 
-            <Link to="/toy"><button className="btn">←</button></Link>
         </section>
     )
 }

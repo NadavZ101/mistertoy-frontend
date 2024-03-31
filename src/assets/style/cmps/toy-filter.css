@@ -1,3 +1,13 @@
+.toy-filter {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1em;
+}
+
+.toy-filter h3 {
+    margin-right: 7px;
+}
+
 .toy-filter form {
     display: flex;
     flex-wrap: wrap;
@@ -34,7 +44,7 @@ label.filter-label select,
     display: flex;
     /* flex-direction: column; */
     font-size: 1em;
-    height: 50px;
+    height: 56px;
     align-self: center;
     /* justify-self: center; */
 

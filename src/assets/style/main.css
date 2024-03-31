@@ -11,12 +11,16 @@
 @import 'basic/checkbox.css'; */
 
 /* CMPS  */
-/* @import 'cmps/header.css';
-@import 'cmps/home-page.css'; */
+/* @import 'cmps/home-page.css'; */
 /* @import 'cmps/nav-bar.css';
-@import 'cmps/label-select.css';
-@import 'cmps/toy-sort.css';
 @import 'cmps/footer.css'; */
+@import 'cmps/header.css';
+@import 'cmps/toy-list.css';
+@import 'cmps/toy-sort.css';
 @import 'cmps/cards.css';
 @import 'cmps/toy-filter.css';
-@import 'cmps/toy-edit.css';
+
+/* PAGES  */
+@import 'pages/toy-index.css';
+@import 'pages/toy-details.css';
+@import 'pages/toy-edit.css';

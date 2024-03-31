@@ -18,11 +18,13 @@ export function CommentModal({ isOpen, onClose, onSave }) {
     return (
         <div className="comment-modal">
             <div className="modal-content">
-                <textarea
-                    value={comment}
-                    onChange={handleChange}
-                    placeholder="Enter your comment"
-                />
+                <pre>
+                    <textarea
+                        value={comment}
+                        onChange={handleChange}
+                        placeholder="Enter your comment"
+                    />
+                </pre>
                 <button className="btn" onClick={handleSave}>Write</button>
                 <button className="btn" onClick={onClose}>Cancel</button>
             </div>
