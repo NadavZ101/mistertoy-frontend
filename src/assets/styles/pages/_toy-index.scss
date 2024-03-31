@@ -1,0 +1,8 @@
+.toy-index {
+    justify-content: center;
+
+    a {
+        @include btn($type: regular);
+        border-radius: 5px;
+    }
+}

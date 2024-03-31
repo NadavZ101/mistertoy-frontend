@@ -1,0 +1,8 @@
+.toy-preview {
+
+    svg,
+    a {
+        @include btn($type: regular);
+        border-radius: 5px;
+    }
+}

@@ -4,8 +4,7 @@ import { ToyPreview } from "./ToyPreview"
 export function ToyList({ toys, onRemoveToy, onEditToy }) {
 
     return <div>
-        <button className="add-toy-btn"><Link to="/toy/edit">Add Toy</Link>
-        </button>
+        <Link to="/toy/edit">Add Toy</Link>
 
         <ul className="toy-list clean-list grid cards">
             {

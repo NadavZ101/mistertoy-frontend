@@ -31,11 +31,13 @@ export function ToyPreview({ toy, onRemoveToy }) {
             </CardActionArea>
             <CardActions>
                 <Button className="btn"><Link to={`/toy/edit/${toy._id}`}>Edit</Link></Button>
-                &nbsp; | &nbsp;
 
+                &nbsp; | &nbsp;
 
                 <Button className="btn"><Link to={`/toy/${toy._id}`}>Details</Link></Button>
                 {/* <Button className="btn" onClick={() => onRemoveToy(toy._id)}></Button> */}
+
+                &nbsp; | &nbsp;
 
                 <DeleteIcon className="btn" onClick={() => onRemoveToy(toy._id)} />
                 {/* <Button className="btn" onClick={() => onRemoveToy(toy._id)}>X</Button> */}
