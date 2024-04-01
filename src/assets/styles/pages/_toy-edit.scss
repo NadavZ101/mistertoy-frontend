@@ -42,6 +42,7 @@
             input#price,
             select {
                 @include input;
+                height: em(50px);
             }
         }
 
