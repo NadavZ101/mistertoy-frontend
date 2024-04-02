@@ -74,10 +74,15 @@ export function ReviewIndex() {
             {canRemove(review) &&
               <button onClick={() => onRemove(review._id)}>X</button>}
             <p>
-              About:
-              <Link to={`/toy/${review.aboutToy._id}`}>
+              Toy:
+              {/* <Link to={`/toy/${review.aboutToy._id}`}>
                 {review.aboutToy.name}
                 {review.aboutToy.price}
+              </Link> */}
+              <Link to={`/toy/${review.aboutToy._id}`}>
+                {review.aboutToy.name}
+                <br></br>
+                price: {review.aboutToy.price}
               </Link>
             </p>
             <h3><pre>{review.txt}</pre></h3>
