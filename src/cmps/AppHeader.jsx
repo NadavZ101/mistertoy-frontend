@@ -25,7 +25,11 @@ export function AppHeader() {
                 <NavLink to="/"><h1>Toys Land</h1></NavLink>
                 <nav className="app-nav flex">
                     <NavLink to="/">Home</NavLink>
+
                     <NavLink to="/toy">Our Toys</NavLink>
+
+                    <NavLink to="/review">Reviews</NavLink>
+
                     <NavLink to="/chart">Dashboard</NavLink>
                 </nav>
             </section>

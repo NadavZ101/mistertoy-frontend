@@ -7,6 +7,7 @@ import { ToyIndex } from './pages/ToyIndex.jsx'
 import { ToyEdit } from './pages/ToyEdit.jsx'
 import { ToyDetails } from './pages/ToyDetails.jsx'
 import { ToyChart } from './pages/ToyChart.jsx'
+import { ReviewIndex } from './pages/ReviewIndex.jsx'
 
 import { store } from './store/store.js'
 // import '../src/assets/style/main.css'
@@ -28,6 +29,7 @@ export function App() {
               <Route element={<ToyEdit />} path="/toy/edit/:toyId" />
               <Route element={<ToyDetails />} path="/toy/:toyId" />
               <Route element={<ToyChart />} path="/chart" />
+              <Route element={<ReviewIndex />} path="/review" />
             </Routes>
           </main>
 

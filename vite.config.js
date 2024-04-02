@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   build: {
-    outDir: '../mistertoy-backend-mongo/public',
+    outDir: '../mistertoy-backend-mongo-atlas-starter/public',
     emptyOutDir: true,
   }
 })
