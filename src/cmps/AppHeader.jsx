@@ -26,7 +26,7 @@ export function AppHeader() {
                 <nav className="app-nav flex">
                     <NavLink to="/">Home</NavLink>
 
-                    <NavLink to="/toy">Our Toys</NavLink>
+                    <NavLink to="/toy">Toys</NavLink>
 
                     <NavLink to="/review">Reviews</NavLink>
 
